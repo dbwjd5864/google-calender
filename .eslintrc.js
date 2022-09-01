@@ -7,10 +7,9 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard-with-typescript',
-    'prettier',
     'plugin:prettier/recommended',
+    'prettier',
   ],
-  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -20,5 +19,6 @@ module.exports = {
   ignorePatterns: ['build', 'dist', 'public'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto', useTabs: false }],
   },
 };
