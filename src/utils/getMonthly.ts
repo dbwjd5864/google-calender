@@ -1,5 +1,5 @@
 export const getMonthly = (year: number, month: number): Date[][] => {
-  const firstDayOfTheMonth = new Date(year, month - 1, 1).getDay();
+  const firstDayOfTheMonth = new Date(year, month, 1).getDay();
   let currentMonthCount = 0 - firstDayOfTheMonth;
 
   const monthly = Array.from({ length: 6 }, () =>
@@ -7,7 +7,7 @@ export const getMonthly = (year: number, month: number): Date[][] => {
       .fill(null)
       .map(() => {
         currentMonthCount++;
-        return new Date(year, month - 1, currentMonthCount);
+        return new Date(year, month, currentMonthCount);
       }),
   );
 
