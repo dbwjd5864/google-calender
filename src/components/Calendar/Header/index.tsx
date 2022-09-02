@@ -1,52 +1,80 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import logo from '../../../assets/images/logo.png';
 import Button from '../../Common/Button';
 import IconLeft from '../../Common/IconLeft';
 import IconRight from '../../Common/IconRight';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useStore';
-import { setToday } from '../../../store/modules/events';
+import { setCurrentDate, setToday } from '../../../store/modules/dates';
 
 const Header = () => {
-  const { currentMonthIndex, currentYear } = useAppSelector(
-    state => state.events,
-  );
+  const { currentDate } = useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
+
+  const displayDate = useMemo(() => {
+    const date = new Date(currentDate);
+    // const month = date.getMonth();
+
+    const firstDayOfTheMonth = date.getDay();
+    // const currentMonthCount = 0 - firstDayOfTheMonth;
+
+    if (date.getDate() <= firstDayOfTheMonth) {
+      return `${date.getFullYear()}년 ${date.getMonth()}월 ~ ${
+        date.getMonth() + 1
+      }월`;
+    } else {
+      return `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
+    }
+  }, [currentDate]);
 
   const handleTodayBtnClick = () => {
     dispatch(setToday());
   };
 
-  const handlePrevWeek = () => {};
+  const handlePrevWeek = () => {
+    const prevWeek = new Date(currentDate);
+    prevWeek.setDate(new Date(currentDate).getDate() - 7);
 
-  const handleNextWeek = () => {};
+    dispatch(setCurrentDate(prevWeek.toLocaleDateString()));
+  };
+
+  const handleNextWeek = () => {
+    const nextWeek = new Date(currentDate);
+    nextWeek.setDate(new Date(currentDate).getDate() + 7);
+
+    dispatch(setCurrentDate(nextWeek.toLocaleDateString()));
+  };
 
   return (
-    <header className="flex items-center py-2 px-4 border-b-[1px]">
-      <img src={logo} alt="calendar-logo" className="mr-2 w-12 h-12" />
-      <h1 className="mr-12 text-xl text-gray-500">캘린더</h1>
-      <Button
-        onClick={handleTodayBtnClick}
-        className="group border rounded px-3 py-1 mr-5 ml-5 hover:bg-gray-100">
-        오늘
-        <p className="absolute bg-stone-500 text-white hidden text-center group-hover:block">
-          Wed
-        </p>
-      </Button>
+    <header className="flex items-center py-2 px-4 border-b-[1px] justify-between">
+      <div className="flex items-center">
+        <img src={logo} alt="calendar-logo" className="mr-2 w-12 h-12" />
+        <h1 className="mr-12 text-xl text-gray-500">캘린더</h1>
+        <Button
+          onClick={handleTodayBtnClick}
+          className="group border rounded px-3 py-1 mr-5 ml-5 hover:bg-gray-100">
+          오늘
+          <p className="absolute bg-stone-500 text-white hidden text-center group-hover:block">
+            Wed
+          </p>
+        </Button>
 
-      <Button
-        className="p-1 mx-1 hover:bg-gray-100 hover:rounded-full"
-        onClick={handlePrevWeek}>
-        <IconLeft className="w-5 h-5" />
-      </Button>
-      <Button
-        className="p-1 mx-1 hover:bg-gray-100 hover:rounded-full"
-        onClick={handleNextWeek}>
-        <IconRight className="w-5 h-5" />
-      </Button>
+        <Button
+          className="p-1 mx-1 hover:bg-gray-100 hover:rounded-full"
+          onClick={handlePrevWeek}>
+          <IconLeft className="w-5 h-5" />
+        </Button>
+        <Button
+          className="p-1 mx-1 hover:bg-gray-100 hover:rounded-full"
+          onClick={handleNextWeek}>
+          <IconRight className="w-5 h-5" />
+        </Button>
 
-      <h2 className="ml-4 text-xl text-gray-600">
-        {currentYear}년 {currentMonthIndex}월 - 9월
-      </h2>
+        <h2 className="ml-4 text-xl text-gray-600">{displayDate}</h2>
+      </div>
+
+      <div className="flex items-center">
+        <span className="px-3 py-1 border rounded">주</span>
+      </div>
     </header>
   );
 };
