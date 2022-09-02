@@ -8,11 +8,11 @@ import Button from '../../../../../Common/Button';
 import {
   setDaySelected,
   setMonthIndex,
-} from '../../../../../../store/modules/events';
+} from '../../../../../../store/modules/dates';
 
 const Days = () => {
   const { currentDate, currentMonthIndex, currentYear, selectedDate } =
-    useAppSelector(state => state.events);
+    useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
 
   const [monthlyData, setMonthlyData] = useState<Date[][]>();

@@ -3,11 +3,11 @@ import IconLeft from '../../../../Common/IconLeft';
 import Button from '../../../../Common/Button';
 import IconRight from '../../../../Common/IconRight';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/useStore';
-import { setMonthIndex } from '../../../../../store/modules/events';
+import { setMonthIndex } from '../../../../../store/modules/dates';
 
 const DatePickerHeader = () => {
   const { currentMonthIndex, currentYear } = useAppSelector(
-    state => state.events,
+    state => state.dates,
   );
   // const [currentMonth, setCurrentMonth] = useState(currentMonthIndex);
   const dispatch = useAppDispatch();
