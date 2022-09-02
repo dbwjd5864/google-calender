@@ -1,14 +1,16 @@
 import React from 'react';
 import Header from '../../components/Calendar/Header';
 import Sidebar from '../../components/Calendar/Sidebar';
+import WeeklyCalendar from '../../components/Calendar/WeeklyCalendar';
 
 const Calendar = () => {
   return (
     <div className={'h-screen flex flex-col'}>
       <Header />
-      <section className={'flex flex-1'}>
+      <main className={'flex flex-1'}>
         <Sidebar />
-      </section>
+        <WeeklyCalendar />
+      </main>
     </div>
   );
 };
