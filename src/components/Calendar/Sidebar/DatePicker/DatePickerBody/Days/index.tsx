@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../../hooks/useStore';
-import { getMonthly } from '../../../../../utils/getMonthly';
-import Button from '../../../../Common/Button';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../../hooks/useStore';
+import { getMonthly } from '../../../../../../utils/getMonthly';
+import Button from '../../../../../Common/Button';
 import {
   setDaySelected,
   setMonthIndex,
-} from '../../../../../store/modules/events';
+} from '../../../../../../store/modules/events';
 
 const Days = () => {
-  const { currentMonthIndex, currentYear, selectedDate } = useAppSelector(
-    state => state.events,
-  );
+  const { currentDate, currentMonthIndex, currentYear, selectedDate } =
+    useAppSelector(state => state.events);
   const dispatch = useAppDispatch();
 
   const [monthlyData, setMonthlyData] = useState<Date[][]>();
 
   useEffect(() => {
     setMonthlyData(getMonthly(currentYear, currentMonthIndex));
-  }, [currentMonthIndex]);
+  }, [currentMonthIndex, currentDate]);
 
   const handleDateClick = (day: Date) => {
-    dispatch(setMonthIndex(day.getMonth()));
-    dispatch(setDaySelected(day));
+    if (day.getMonth() !== currentMonthIndex) {
+      dispatch(setMonthIndex(day.getMonth()));
+    }
+
+    dispatch(setDaySelected(day.toLocaleDateString()));
   };
 
   return (
@@ -32,24 +37,26 @@ const Days = () => {
             const currentDate = new Date();
             let className = '';
 
-            if (day.getMonth() + 1 !== currentMonthIndex) {
+            if (
+              day.getMonth() !== currentMonthIndex &&
+              currentDate.getDate() !== day.getDate()
+            ) {
               className = 'text-gray-500/80';
             } else if (
               currentDate.getDate() === day.getDate() &&
               currentDate.getMonth() === day.getMonth()
             ) {
-              className = 'bg-blue-500 rounded-full text-white';
-            } else if (
-              selectedDate.getDate() === day.getDate() &&
-              selectedDate.getMonth() === day.getMonth()
-            ) {
-              className = 'bg-blue-500/30 rounded-full text-blue-600';
+              className =
+                'bg-blue-500 rounded-full text-white hover:bg-blue-600';
+            } else if (selectedDate === day.toLocaleDateString()) {
+              className =
+                'bg-blue-500/30 rounded-full text-blue-600 hover:bg-blue-500/50';
             }
 
             return (
               <Button
                 key={index}
-                className={`py-1 w-full ${className}`}
+                className={`py-1 w-full hover:bg-gray-100 hover:rounded-full ${className}`}
                 onClick={() => handleDateClick(day)}>
                 <span className="text-xsm">{day.getDate()}</span>
               </Button>

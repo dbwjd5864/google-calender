@@ -1,9 +1,9 @@
 import React from 'react';
-import IconLeft from '../../../Common/IconLeft';
-import Button from '../../../Common/Button';
-import IconRight from '../../../Common/IconRight';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/useStore';
-import { setMonthIndex } from '../../../../store/modules/events';
+import IconLeft from '../../../../Common/IconLeft';
+import Button from '../../../../Common/Button';
+import IconRight from '../../../../Common/IconRight';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/useStore';
+import { setMonthIndex } from '../../../../../store/modules/events';
 
 const DatePickerHeader = () => {
   const { currentMonthIndex, currentYear } = useAppSelector(
@@ -23,7 +23,7 @@ const DatePickerHeader = () => {
   return (
     <div className="mt-4 ml-4 flex items-center justify-between">
       <p className="text-sm text-gray-600">
-        {currentYear}년 {currentMonthIndex}월
+        {currentYear}년 {currentMonthIndex + 1}월
       </p>
 
       <div className="mr-2">

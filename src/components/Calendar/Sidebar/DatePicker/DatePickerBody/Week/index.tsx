@@ -1,5 +1,5 @@
 import React from 'react';
-import { DAYS } from '../../../../constants';
+import { DAYS } from '../../../../../constants';
 
 const Weekdays = () => {
   return (
