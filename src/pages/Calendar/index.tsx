@@ -5,7 +5,7 @@ import WeeklyCalendar from '../../components/Calendar/WeeklyCalendar';
 
 const Calendar = () => {
   return (
-    <div className={'h-screen flex flex-col'}>
+    <div className={'h-screen flex flex-col overflow-hidden'}>
       <Header />
       <main className={'flex flex-1'}>
         <Sidebar />
