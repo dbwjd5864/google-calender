@@ -47,6 +47,7 @@ const WeeklyCalendarBody = () => {
 
   const handleNewEvent = (stringDate: string, hour: number) => {
     const time = hour.toString() + '00';
+    setSelectedEventPosition(null);
     dispatch(setEventModalData({ date: stringDate, startTime: time }));
     dispatch(setEventModalOpen());
   };
@@ -118,7 +119,7 @@ const WeeklyCalendarBody = () => {
                       handleSelectedEvent(e, stringDate, index)
                     }>
                     <div className="mr-1">{title}</div>
-                    <div>
+                    <div className="hidden sm:block">
                       <span>
                         {startHour < 12 ? '오전' : '오후'}{' '}
                         {startHour !== 0 ? startHour : 12}
