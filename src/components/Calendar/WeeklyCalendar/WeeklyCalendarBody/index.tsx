@@ -17,11 +17,11 @@ const WeeklyCalendarBody = () => {
   return (
     <div className="flex flex-1 max-h-[calc(100vh-9.3rem)] overflow-y-scroll">
       <div className="flex flex-col h-fit">
-        {hours.map(hour => {
+        {hours.map((hour, index) => {
           return (
             <div
               className="text-gray-500 text-xsm h-[55px] text-right pr-2"
-              key={hour}>
+              key={index}>
               {hour}
             </div>
           );
@@ -31,10 +31,10 @@ const WeeklyCalendarBody = () => {
         {weekly.map(date => {
           return (
             <div className="flex flex-1 flex-col" key={`${date.day}-border`}>
-              {hours.map(hour => {
+              {hours.map((hour, index) => {
                 return (
                   <div
-                    key={`${hour}-border`}
+                    key={`${hour}${index}`}
                     className="border-1 border-t border-l h-[55px]"
                   />
                 );
