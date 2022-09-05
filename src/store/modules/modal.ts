@@ -5,7 +5,7 @@ interface ModalInitialState {
 }
 
 const initialState: ModalInitialState = {
-  eventModalIsOpen: true,
+  eventModalIsOpen: false,
 };
 
 const modalSlice = createSlice({
