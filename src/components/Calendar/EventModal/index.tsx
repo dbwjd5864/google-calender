@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useStore';
 import { setEventModalOpen } from '../../../store/modules/modal';
 import Button from '../../Common/Button';
@@ -9,6 +9,7 @@ import { addEvent, NewEvent } from '../../../store/modules/events';
 
 const EventModal = () => {
   const { eventModalIsOpen } = useAppSelector(state => state.modal);
+  const { eventModalData } = useAppSelector(state => state.events);
   const dispatch = useAppDispatch();
 
   const [title, setTitle] = useState<string>('');
@@ -25,11 +26,37 @@ const EventModal = () => {
   const [endTime, setEndTime] = useState<Option>(endSelectOptions[0]);
   const [endTimeIndex, setEndTimeIndex] = useState<number>(0);
 
+  useEffect(() => {
+    if (eventModalData !== null) {
+      const { date, startTime } = eventModalData;
+      setDate(date);
+
+      const foundTimeIndex = startSelectOptions.findIndex(
+        option => option.value === startTime,
+      );
+
+      foundTimeIndex !== undefined
+        ? setStartTimeIndex(foundTimeIndex)
+        : setStartTimeIndex(0);
+    } else {
+      handleResetInput();
+    }
+  }, [eventModalData]);
+
+  useEffect(() => {
+    setStartTime(startSelectOptions[startTimeIndex]);
+
+    if (startTimeIndex > endTimeIndex) {
+      setEndTimeIndex(startTimeIndex);
+      setEndTime(startSelectOptions[startTimeIndex]);
+    }
+  }, [startTimeIndex]);
+
   const handleToggleModal = useCallback(() => {
     dispatch(setEventModalOpen());
   }, []);
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = () => {
     const newEvent: NewEvent = {
       date,
       eventDetail: {
@@ -58,11 +85,6 @@ const EventModal = () => {
       const i = index as number;
       setStartTimeIndex(i);
       setStartTime(selected);
-
-      if (i > endTimeIndex) {
-        setEndTimeIndex(i);
-        setEndTime(startSelectOptions[i]);
-      }
     },
     [],
   );
