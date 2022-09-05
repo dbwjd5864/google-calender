@@ -1,6 +1,9 @@
+import { getStringDateFormat } from './getStringDateFormat';
+
 interface Day {
   isToday: boolean;
   day: number;
+  stringDate: string;
 }
 
 export const getThisWeek = (selectedDate: string): Day[] => {
@@ -13,7 +16,7 @@ export const getThisWeek = (selectedDate: string): Day[] => {
 
   let diff = date.getDate() - day;
 
-  const currentWeek = Array.from({ length: 7 }, () => {
+  return Array.from({ length: 7 }, () => {
     const date = new Date(year, month, diff++);
 
     return {
@@ -21,8 +24,7 @@ export const getThisWeek = (selectedDate: string): Day[] => {
         date.getDate() === today.getDate() &&
         date.getMonth() === today.getMonth(),
       day: date.getDate(),
+      stringDate: getStringDateFormat(date),
     };
   });
-
-  return currentWeek;
 };
