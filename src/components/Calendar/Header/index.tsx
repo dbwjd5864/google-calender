@@ -5,6 +5,7 @@ import IconLeft from '../../Common/IconLeft';
 import IconRight from '../../Common/IconRight';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useStore';
 import { setCurrentDate, setToday } from '../../../store/modules/dates';
+import { getStringDateFormat } from '../../../utils/getStringDateFormat';
 
 const Header = () => {
   const { currentDate } = useAppSelector(state => state.dates);
@@ -12,10 +13,8 @@ const Header = () => {
 
   const displayDate = useMemo(() => {
     const date = new Date(currentDate);
-    // const month = date.getMonth();
 
     const firstDayOfTheMonth = date.getDay();
-    // const currentMonthCount = 0 - firstDayOfTheMonth;
 
     if (date.getDate() <= firstDayOfTheMonth) {
       return `${date.getFullYear()}년 ${date.getMonth()}월 ~ ${
@@ -53,8 +52,8 @@ const Header = () => {
           onClick={handleTodayBtnClick}
           className="group border rounded px-3 py-1 mr-5 ml-5 hover:bg-gray-100">
           오늘
-          <p className="absolute bg-stone-500 text-white hidden text-center group-hover:block">
-            Wed
+          <p className="absolute p-2 bg-stone-500 text-white hidden text-center group-hover:block">
+            {getStringDateFormat(new Date(), '-')}
           </p>
         </Button>
 

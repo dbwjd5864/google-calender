@@ -9,7 +9,7 @@ const DatePickerHeader = () => {
   const { currentMonthIndex, currentYear } = useAppSelector(
     state => state.dates,
   );
-  // const [currentMonth, setCurrentMonth] = useState(currentMonthIndex);
+
   const dispatch = useAppDispatch();
 
   const handlePrevMonth = () => {
