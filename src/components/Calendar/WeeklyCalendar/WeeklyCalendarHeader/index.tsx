@@ -13,12 +13,6 @@ const WeeklyCalenderHeader = () => {
   return (
     <div className="flex ml-[50px]">
       {weekly.map((date, index) => {
-        let className = '';
-
-        if (date.isToday) {
-          className = 'bg-blue-500 text-white';
-        }
-
         return (
           <div className="flex flex-1 flex-col pt-4" key={date.day}>
             <div
@@ -29,8 +23,12 @@ const WeeklyCalenderHeader = () => {
             </div>
             <div className="text-center font-light text-2xl p-1">
               <div
-                className={`w-10 h-10 rounded-full m-auto flex justify-center items-center text-gray-500 font-medium
-                      ${className}`}>
+                className={`w-10 h-10 rounded-full m-auto flex justify-center items-center font-medium
+                      ${
+                        date.isToday
+                          ? 'bg-blue-500 text-white'
+                          : 'text-gray-500'
+                      }`}>
                 {date.day}
               </div>
             </div>
