@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+
+const today = new Date();
 
 interface DatesInitialState {
   currentDate: string;
@@ -7,13 +9,18 @@ interface DatesInitialState {
   selectedDate: string;
 }
 
-const today = new Date();
-
 const initialState: DatesInitialState = {
   currentDate: today.toLocaleDateString(),
   currentMonthIndex: today.getMonth(),
   currentYear: today.getFullYear(),
   selectedDate: today.toLocaleDateString(),
+};
+
+const handleDateFormat = (state: Draft<DatesInitialState>, date: Date) => {
+  state.selectedDate = date.toLocaleDateString();
+  state.currentDate = date.toLocaleDateString();
+  state.currentMonthIndex = date.getMonth();
+  state.currentYear = date.getFullYear();
 };
 
 const datesSlice = createSlice({
@@ -23,10 +30,7 @@ const datesSlice = createSlice({
     setCurrentDate: (state, action: PayloadAction<string>) => {
       const current = new Date(action.payload);
 
-      state.currentDate = action.payload;
-      state.selectedDate = action.payload;
-      state.currentMonthIndex = current.getMonth();
-      state.currentYear = current.getFullYear();
+      handleDateFormat(state, current);
     },
     setMonthIndex: (state, action: PayloadAction<number>) => {
       const monthIndex = action.payload;
@@ -41,17 +45,12 @@ const datesSlice = createSlice({
       }
     },
     setToday: state => {
-      state.currentDate = today.toLocaleDateString();
-      state.currentMonthIndex = today.getMonth();
-      state.currentYear = today.getFullYear();
+      handleDateFormat(state, today);
     },
     setDaySelected: (state, action: PayloadAction<string>) => {
       const current = new Date(action.payload);
 
-      state.selectedDate = action.payload;
-      state.currentDate = current.toLocaleDateString();
-      state.currentMonthIndex = current.getMonth();
-      state.currentYear = current.getFullYear();
+      handleDateFormat(state, current);
     },
   },
 });
