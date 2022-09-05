@@ -48,10 +48,10 @@ Google-Calendar
 │  │  └─ images
 │  ├─ components               
 │  │  ├─ Calendar              - 달력 페이지를 구성하는 컴포넌트들
-│  │  │  ├─ EventModal         - 이벤트 추가 모달 
-│  │  │  ├─ Header             - 캘린더 페이지 헤더
-│  │  │  ├─ Sidebar            - 캘린더 페이지 좌측 사이드바 (이벤트 추가 버튼, datepicker 등)
-│  │  │  └─ WeeklyCalendar     - 캘린더 페이지 우측 위클리 캘린더
+│  │  │  ├─ EventModal              - 이벤트 추가 모달 
+│  │  │  ├─ Header                  - 캘린더 페이지 헤더
+│  │  │  ├─ Sidebar                 - 캘린더 페이지 좌측 사이드바 (이벤트 추가 버튼, datepicker 등)
+│  │  │  └─ WeeklyCalendar          - 캘린더 페이지 우측 위클리 캘린더
 │  │  ├─ Common                - 공통 컴포넌트     
 │  │  └─ constants             - 상수값
 │  ├─ hooks                    - 커스텀 hook
@@ -60,12 +60,18 @@ Google-Calendar
 │  │  └─ Calendar
 │  ├─ store                    - redux 스토어
 │  │  ├─ modules
-│  │  │  ├─ dates.ts           - 디스플레이 되는 달력, 선택된 날짜등 날짜오 관련됭 정보 
-│  │  │  ├─ events.ts          - 캘린더 상에 보여지는 이벤트 관련된 정보 (이벤트 추가, 삭제등)
-│  │  │  └─ modal.ts           - 이벤트 추가 모달 관련 관련된 정보
+│  │  │  ├─ dates.ts                - 디스플레이 되는 달력, 선택된 날짜등 날짜오 관련됭 정보 
+│  │  │  ├─ events.ts               - 캘린더 상에 보여지는 이벤트 관련된 정보 (이벤트 추가, 삭제등)
+│  │  │  └─ modal.ts                - 이벤트 추가 모달 관련 관련된 정보
 │  │  └─ configureStore.ts  
 │  ├─ types                    - 공통 타입
 │  │  └─ react-app-env.d.ts
+│  ├─ utils                    - 유틸 함수
+│  │  │  ├─ createTimeOptions.ts    - minutes props를 활용하여 select에 넣고자 하는 options값 생성
+│  │  │  ├─ getHours.ts             - 오전 12시부터 오후 12시까지 24시간 리스트 생성
+│  │  │  ├─ getMonthly.ts           - 선택된 달에 날 생성 
+│  │  │  ├─ getStringDateFormat.ts  - formatter props를 활용하여 date를 원하는 string 포맷으로 변경
+│  │  │  └─ getThisWeek.ts          - 선택된 날짜가 속한 주(일 ~ 토) 생성
 │  ├─ App.tsx
 │  ├─ index.css
 │  └─ index.tsx
