@@ -1,27 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Time {
-  hour: number;
-  minute: number;
-}
-
-interface EventDetail {
-  start: Time;
-  end: Time;
+export interface EventDetail {
+  start: string;
+  end: string;
   title: string;
 }
 
-interface EventsInitialState {
-  [key: string]: EventDetail[];
+export interface NewEvent {
+  date: string;
+  eventDetail: EventDetail;
 }
 
-const initialState: EventsInitialState = {};
+interface EventsInitialState {
+  events: { [key: string]: EventDetail[] };
+}
+
+const initialState: EventsInitialState = {
+  events: {},
+};
 
 const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    addEvent: (state, action) => {},
+    addEvent: (state, action: PayloadAction<NewEvent>) => {
+      const { date, eventDetail } = action.payload;
+      if (state.events[date] === undefined) {
+        state.events[date] = [];
+      }
+
+      state.events[date].push(eventDetail);
+    },
     deleteEvent: (state, action) => {},
   },
 });
