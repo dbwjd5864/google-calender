@@ -4,6 +4,14 @@
 
 ```React, Typescript, Redux-toolkit, Tailwind 을 활용한 구글 주별 캘린더 클론 코딩입니다.```
 
+<img width="1440" alt="Screen Shot 2022-09-05 at 9 57 28 PM" src="https://user-images.githubusercontent.com/61952198/188455035-bf3f3610-13b5-4f4b-bc37-ce2e744333be.png">
+
+
+| 이벤트등록              | 등록된 이벤트           | 반응형                   |
+|----------------------|----------------------|------------------------|
+| <img width="1440" alt="Screen Shot 2022-09-05 at 9 57 57 PM" src="https://user-images.githubusercontent.com/61952198/188455063-a9d2283b-61ca-477d-a94d-1ac9d69ac038.png"> | <img width="1440" alt="Screen Shot 2022-09-05 at 9 58 10 PM" src="https://user-images.githubusercontent.com/61952198/188455113-0aa086de-6d3a-4094-9732-3b2fb601522e.png"> | <img width="500" alt="Screen Shot 2022-09-05 at 9 58 23 PM" src="https://user-images.githubusercontent.com/61952198/188455169-ed2310e8-810a-4a53-ba95-e07934e3780c.png"> |
+
+
 ## 1. 프로젝트 실행 방법
 
 ```text
