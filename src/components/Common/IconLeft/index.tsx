@@ -20,4 +20,4 @@ const IconLeft = ({ className = '' }: IconLeftProps) => {
   );
 };
 
-export default IconLeft;
+export default React.memo(IconLeft);
