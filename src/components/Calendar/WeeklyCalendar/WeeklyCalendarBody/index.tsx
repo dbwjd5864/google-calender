@@ -67,7 +67,7 @@ const WeeklyCalendarBody = () => {
     <div
       ref={deletePopupContainerRef}
       className="flex flex-1 max-h-[calc(100vh-9.3rem)] overflow-y-scroll">
-      <div className="flex flex-col h-fit">
+      <div className="flex flex-col h-fit absolute md:relative">
         {hours.map((hour, index) => {
           return (
             <div
@@ -78,7 +78,7 @@ const WeeklyCalendarBody = () => {
           );
         })}
       </div>
-      <div className="flex flex-1 h-fit pt-2">
+      <div className="flex flex-1 h-fit pt-2 ml-[50px] md:ml-0">
         {weekly.map(({ day, stringDate }) => {
           return (
             <div
