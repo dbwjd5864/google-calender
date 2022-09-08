@@ -47,15 +47,9 @@ const datesSlice = createSlice({
     setToday: state => {
       handleDateFormat(state, today);
     },
-    setDaySelected: (state, action: PayloadAction<string>) => {
-      const current = new Date(action.payload);
-
-      handleDateFormat(state, current);
-    },
   },
 });
 
 const { reducer } = datesSlice;
-export const { setCurrentDate, setMonthIndex, setToday, setDaySelected } =
-  datesSlice.actions;
+export const { setCurrentDate, setMonthIndex, setToday } = datesSlice.actions;
 export default reducer;

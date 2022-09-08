@@ -16,21 +16,15 @@ const WeeklyCalenderHeader = () => {
         return (
           <div className="flex flex-1 flex-col pt-4" key={date.day}>
             <div
-              className={`text-center font-light text-sm ${
+              className={`text-center text-sm ${
                 date.isToday ? 'text-blue-500' : 'text-gray-500'
               }`}>
               {DAYS[index]}
             </div>
-            <div className="text-center font-light text-2xl p-1">
-              <div
-                className={`w-10 h-10 rounded-full m-auto flex justify-center items-center font-medium
-                      ${
-                        date.isToday
-                          ? 'bg-blue-500 text-white'
-                          : 'text-gray-500'
-                      }`}>
-                {date.day}
-              </div>
+            <div
+              className={`text-center text-2xl p-1 w-10 h-10 rounded-full m-auto flex justify-center items-center font-medium
+            ${date.isToday ? 'bg-blue-500 text-white' : 'text-gray-500'}`}>
+              {date.day}
             </div>
           </div>
         );

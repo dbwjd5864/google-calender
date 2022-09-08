@@ -45,8 +45,8 @@ const WeeklyCalendarBody = () => {
     }
   };
 
-  const handleNewEvent = (stringDate: string, hour: number) => {
-    const time = hour.toString() + '00';
+  const handleNewEvent = (stringDate: string, hour: number, minute: string) => {
+    const time = hour.toString() + minute;
     setSelectedEventPosition(null);
     dispatch(setEventModalData({ date: stringDate, startTime: time }));
     dispatch(setEventModalOpen());
@@ -90,7 +90,15 @@ const WeeklyCalendarBody = () => {
                   <div
                     key={`${hour}${index}`}
                     className="border-1 border-t border-l h-[55px]"
-                    onClick={() => handleNewEvent(stringDate, index)}
+                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const y = e.clientY - rect.top;
+                      let minute = '00';
+                      if (y > 55 / 2) {
+                        minute = '30';
+                      }
+                      handleNewEvent(stringDate, index, minute);
+                    }}
                   />
                 );
               })}

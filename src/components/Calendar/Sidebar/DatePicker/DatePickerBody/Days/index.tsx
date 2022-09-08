@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import {
   useAppDispatch,
   useAppSelector,
@@ -6,19 +6,23 @@ import {
 import { getMonthly } from '../../../../../../utils/getMonthly';
 import Button from '../../../../../Common/Button';
 import {
-  setDaySelected,
+  setCurrentDate,
   setMonthIndex,
 } from '../../../../../../store/modules/dates';
 
 const Days = () => {
-  const { currentDate, currentMonthIndex, currentYear, selectedDate } =
-    useAppSelector(state => state.dates);
+  const dates = useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
+  const { currentDate, currentMonthIndex, currentYear } = dates;
 
-  const [monthlyData, setMonthlyData] = useState<Date[][]>();
+  // const [monthlyData, setMonthlyData] = useState<Date[][]>();
 
-  useEffect(() => {
-    setMonthlyData(getMonthly(currentYear, currentMonthIndex));
+  // useEffect(() => {
+  //   setMonthlyData(getMonthly(currentYear, currentMonthIndex));
+  // }, [currentMonthIndex, currentDate]);
+
+  const monthlyData = useMemo(() => {
+    return getMonthly(currentYear, currentMonthIndex);
   }, [currentMonthIndex, currentDate]);
 
   const handleDateClick = (day: Date) => {
@@ -26,7 +30,7 @@ const Days = () => {
       dispatch(setMonthIndex(day.getMonth()));
     }
 
-    dispatch(setDaySelected(day.toLocaleDateString()));
+    dispatch(setCurrentDate(day.toLocaleDateString()));
   };
 
   return (
@@ -34,21 +38,21 @@ const Days = () => {
       {monthlyData?.map((week, i) => (
         <React.Fragment key={i}>
           {week.map((day, index) => {
-            const currentDate = new Date();
+            const date = new Date();
             let className = '';
 
             if (
               day.getMonth() !== currentMonthIndex &&
-              currentDate.getDate() !== day.getDate()
+              date.getDate() !== day.getDate()
             ) {
               className = 'text-gray-500/80';
             } else if (
-              currentDate.getDate() === day.getDate() &&
-              currentDate.getMonth() === day.getMonth()
+              date.getDate() === day.getDate() &&
+              date.getMonth() === day.getMonth()
             ) {
               className =
                 'bg-blue-500 rounded-full text-white hover:bg-blue-600';
-            } else if (selectedDate === day.toLocaleDateString()) {
+            } else if (currentDate === day.toLocaleDateString()) {
               className =
                 'bg-blue-500/30 rounded-full text-blue-600 hover:bg-blue-500/50';
             }

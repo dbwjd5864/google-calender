@@ -8,15 +8,19 @@ import { setCurrentDate, setToday } from '../../../store/modules/dates';
 import { getStringDateFormat } from '../../../utils/getStringDateFormat';
 
 const Header = () => {
-  const { currentDate } = useAppSelector(state => state.dates);
+  const { currentDate, currentYear, currentMonthIndex } = useAppSelector(
+    state => state.dates,
+  );
   const dispatch = useAppDispatch();
 
+  // 고쳐봐야 하는 부분
   const displayDate = useMemo(() => {
-    const date = new Date(currentDate);
+    const date = new Date(currentYear, currentMonthIndex, 1);
+    const selectedDate = new Date(currentDate);
 
     const firstDayOfTheMonth = date.getDay();
 
-    if (date.getDate() <= firstDayOfTheMonth) {
+    if (date.getDate() <= firstDayOfTheMonth || selectedDate.getDate() < 6) {
       return `${date.getFullYear()}년 ${date.getMonth()}월 ~ ${
         date.getMonth() + 1
       }월`;
