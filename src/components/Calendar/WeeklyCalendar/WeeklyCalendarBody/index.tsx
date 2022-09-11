@@ -10,7 +10,7 @@ import {
 import { setEventModalOpen } from '../../../../store/modules/modal';
 
 const WeeklyCalendarBody = () => {
-  const { selectedDate } = useAppSelector(state => state.dates);
+  const { currentDate } = useAppSelector(state => state.dates);
   const { events } = useAppSelector(state => state.events);
   const dispatch = useAppDispatch();
 
@@ -25,8 +25,8 @@ const WeeklyCalendarBody = () => {
   );
 
   const weekly = useMemo(() => {
-    return getThisWeek(selectedDate);
-  }, [selectedDate]);
+    return getThisWeek(currentDate);
+  }, [currentDate]);
 
   const hours = useMemo(() => {
     return getHours();
@@ -68,7 +68,7 @@ const WeeklyCalendarBody = () => {
     <div
       ref={deletePopupContainerRef}
       className="flex flex-1 max-h-[calc(100vh-9.3rem)] overflow-y-scroll">
-      <div className="flex flex-col h-fit absolute md:relative">
+      <div className="flex flex-col h-fit">
         {hours.map((hour, index) => {
           return (
             <div
@@ -79,12 +79,12 @@ const WeeklyCalendarBody = () => {
           );
         })}
       </div>
-      <div className="flex flex-1 h-fit pt-2 ml-[50px] md:ml-0">
-        {weekly.map(({ day, stringDate }) => {
+      <div className="flex flex-1 h-fit pt-2 md:ml-0">
+        {weekly.map(({ date, stringDate }) => {
           return (
             <div
               className="flex flex-1 flex-col relative"
-              key={`${day}-border`}>
+              key={`${date}-border`}>
               {hours.map((hour, index) => {
                 return (
                   <div

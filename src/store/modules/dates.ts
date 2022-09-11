@@ -6,18 +6,15 @@ interface DatesInitialState {
   currentDate: string;
   currentMonthIndex: number;
   currentYear: number;
-  selectedDate: string;
 }
 
 const initialState: DatesInitialState = {
   currentDate: today.toLocaleDateString(),
   currentMonthIndex: today.getMonth(),
   currentYear: today.getFullYear(),
-  selectedDate: today.toLocaleDateString(),
 };
 
 const handleDateFormat = (state: Draft<DatesInitialState>, date: Date) => {
-  state.selectedDate = date.toLocaleDateString();
   state.currentDate = date.toLocaleDateString();
   state.currentMonthIndex = date.getMonth();
   state.currentYear = date.getFullYear();

@@ -3,6 +3,7 @@ import { getStringDateFormat } from './getStringDateFormat';
 interface Day {
   isToday: boolean;
   day: number;
+  date: number;
   stringDate: string;
 }
 
@@ -23,7 +24,8 @@ export const getThisWeek = (selectedDate: string): Day[] => {
       isToday:
         date.getDate() === today.getDate() &&
         date.getMonth() === today.getMonth(),
-      day: date.getDate(),
+      day: date.getDay(),
+      date: date.getDate(),
       stringDate: getStringDateFormat(date),
     };
   });
