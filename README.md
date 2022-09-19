@@ -65,6 +65,7 @@ Google-Calendar
 │  │  │  └─ modal.ts                - 이벤트 추가 모달 관련 관련된 정보
 │  │  └─ configureStore.ts  
 │  ├─ types                    - 공통 타입
+│  │  ├─ events.ts                  - 이벤트와 관련하여 반복적으로 사용되는 타입
 │  │  └─ react-app-env.d.ts
 │  ├─ utils                    - 유틸 함수
 │  │  │  ├─ createTimeOptions.ts    - minutes props를 활용하여 select에 넣고자 하는 options값 생성
