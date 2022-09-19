@@ -4,10 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/useStore';
 import { getThisWeek } from '../../../../utils/getThisWeek';
 import {
   deleteEvent,
-  SelectedEvent,
   setEventModalData,
 } from '../../../../store/modules/events';
 import { setEventModalOpen } from '../../../../store/modules/modal';
+import { SelectedEvent } from '../../../../types/events';
 
 const WeeklyCalendarBody = () => {
   const { currentDate } = useAppSelector(state => state.dates);

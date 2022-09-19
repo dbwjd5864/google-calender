@@ -1,30 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  EventDetail,
+  EventModalData,
+  NewEvent,
+  SelectedEvent,
+} from '../../types/events';
 
-export interface EventDetail {
-  start: string;
-  end: string;
-  title: string;
-}
-
-export interface NewEvent {
-  date: string;
-  eventDetail: EventDetail;
-}
-
-export interface SelectedEvent {
-  date: string;
-  index: number;
-}
-
-export interface EventModalData {
-  date: string;
-  startTime: string;
-}
-
-interface EventsInitialState {
+type EventsInitialState = {
   events: { [key: string]: EventDetail[] };
   eventModalData: EventModalData | null;
-}
+};
 
 const initialState: EventsInitialState = {
   events: {},

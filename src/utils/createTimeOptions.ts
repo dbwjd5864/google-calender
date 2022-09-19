@@ -1,10 +1,10 @@
 import { getHours } from './getHours';
 
-export interface Option {
+export type Option = {
   [key: string]: string;
   value: string;
   label: string;
-}
+};
 
 const hours = getHours();
 const defaultMinutes = ['00', '15', '30', '45'];

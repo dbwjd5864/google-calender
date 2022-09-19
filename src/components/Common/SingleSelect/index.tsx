@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Option } from '../../../utils/createTimeOptions';
 
-interface SingleSelectProps {
+type SingleSelectProps = {
   valueKey?: string;
   labelKey?: string;
   options: Option[];
@@ -10,7 +10,7 @@ interface SingleSelectProps {
   placeholder?: string;
   className?: string;
   isCustomSelectedOption?: boolean;
-}
+};
 
 const SingleSelect = ({
   valueKey = 'value',

@@ -2,11 +2,11 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 
 const today = new Date();
 
-interface DatesInitialState {
+type DatesInitialState = {
   currentDate: string;
   currentMonthIndex: number;
   currentYear: number;
-}
+};
 
 const initialState: DatesInitialState = {
   currentDate: today.toLocaleDateString(),

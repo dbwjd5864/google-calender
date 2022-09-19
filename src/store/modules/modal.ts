@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface ModalInitialState {
+type ModalInitialState = {
   eventModalIsOpen: boolean;
-}
+};
 
 const initialState: ModalInitialState = {
   eventModalIsOpen: false,

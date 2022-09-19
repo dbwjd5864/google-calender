@@ -1,11 +1,11 @@
 import { getStringDateFormat } from './getStringDateFormat';
 
-interface Day {
+type Day = {
   isToday: boolean;
   day: number;
   date: number;
   stringDate: string;
-}
+};
 
 export const getThisWeek = (selectedDate: string): Day[] => {
   const date = new Date(selectedDate);

@@ -1,9 +1,9 @@
 import React from 'react';
 
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+type ButtonProps = React.HTMLProps<HTMLButtonElement> & {
   type?: 'button' | 'submit' | 'reset';
   className?: string;
-}
+};
 
 const Button = ({
   type = 'button',

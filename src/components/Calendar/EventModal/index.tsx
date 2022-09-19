@@ -5,7 +5,8 @@ import Button from '../../Common/Button';
 import { getStringDateFormat } from '../../../utils/getStringDateFormat';
 import SingleSelect from '../../Common/SingleSelect';
 import { createTimeOptions, Option } from '../../../utils/createTimeOptions';
-import { addEvent, NewEvent } from '../../../store/modules/events';
+import { addEvent } from '../../../store/modules/events';
+import { NewEvent } from '../../../types/events';
 
 const EventModal = () => {
   const { eventModalIsOpen } = useAppSelector(state => state.modal);

@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface IconLeftProps {
+type IconLeftProps = {
   className?: string;
-}
+};
 
 const IconLeft = ({ className = '' }: IconLeftProps) => {
   return (
