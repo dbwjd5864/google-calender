@@ -1,4 +1,4 @@
-const monthAndDayFormatter = (number: Number) => {
+const monthAndDayFormatter = (number: number) => {
   if (number < 10) {
     return `0${number.toString()}`;
   }
@@ -6,10 +6,7 @@ const monthAndDayFormatter = (number: Number) => {
   return number;
 };
 
-export const getStringDateFormat = (
-  date: Date,
-  formatter: string = '-',
-): string => {
+export const getStringDateFormat = (date: Date, formatter = '-'): string => {
   const year = date.getFullYear();
   const month = monthAndDayFormatter(date.getMonth() + 1);
   const day = monthAndDayFormatter(date.getDate());
